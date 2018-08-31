@@ -7,14 +7,7 @@ export default class AlbumsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      songs: [{
-        id: "",
-        name: "",
-        artist: {
-          id: "",
-          name: ""
-        }
-      }]
+      songs: null
     }
   }
 
@@ -38,8 +31,9 @@ export default class AlbumsList extends React.Component {
             <h4 className={ "mb-4" }>Popular tracks</h4>
           </Col>
         </Row>
-        { this.state.songs.map((value, index) => (
-          <Row className={ "p-1 lead song" }>
+        { this.state.songs &&
+          this.state.songs.map((value, index) => (
+          <Row className={ "p-1 lead song" } key={ value.id }>
             <Col xs={ "auto" } style={ { width: "35px" } }>
               { index + 1 }
             </Col>

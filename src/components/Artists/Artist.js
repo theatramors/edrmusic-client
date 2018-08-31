@@ -13,18 +13,18 @@ export default class Artist extends React.Component {
     this.state = {
       activeTab: "1",
       artist: {
-        id: "",
-        name: "",
-        genre: ""
+        id: null,
+        name: null,
+        genre: null
       },
       albums: [{
-        id: "",
-        name: "",
-        year: ""
+        id: null,
+        name: null,
+        year: null
       }],
       songs: [{
-        id: "",
-        name: ""
+        id: null,
+        name: null
       }]
     }
   }

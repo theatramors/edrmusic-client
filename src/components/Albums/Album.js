@@ -9,17 +9,17 @@ export default class Album extends React.Component {
 
     this.state = {
       album: {
-        id: "",
-        name: "",
-        year: "",
+        id: null,
+        name: null,
+        year: null,
         artist: {
-          id: "",
-          name: "",
-          genre: ""
+          id: null,
+          name: null,
+          genre: null
         },
         songs: [{
-          id: "",
-          name: ""
+          id: null,
+          name: null
         }]
       }
     }
