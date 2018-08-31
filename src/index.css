@@ -1,0 +1,41 @@
+@import "https://fonts.googleapis.com/css?family=Titillium+Web:300,400";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font: 15px/1.5 "Consolas";
+    background: url("http://localhost:3000/img/fabric.png");
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.lead {
+    font-size: 1rem;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    cursor: pointer;
+}
+
+.nav-tabs .nav-link.active {
+    border: none;
+    border-bottom: 3px solid rgb(150, 150, 150);
+    background: transparent;
+}
+
+.song:hover {
+    box-shadow: inset 0 0 0 1px rgb(200, 200, 200), inset 0 -15px 15px -15px rgb(200, 200, 200);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
