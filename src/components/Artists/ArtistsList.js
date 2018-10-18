@@ -8,11 +8,7 @@ export default class ArtistsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artists: [{
-        id: "",
-        name: "",
-        genre: ""
-      }]
+      artists: null
     }
   }
 
@@ -34,7 +30,8 @@ export default class ArtistsList extends React.Component {
   render() {
     return (
       <Row>
-        { this.state.artists.map((value) => (
+        { this.state.artists &&
+          this.state.artists.map((value) => (
           <Col xs={ "3" } className={ "mb-4" } key={ value.id }>
             <Card className={ "shadow" }>
               <Link to={ "/artists/" + value.id }>
