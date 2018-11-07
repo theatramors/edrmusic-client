@@ -4,7 +4,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Card, CardBody, CardImg, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
 
-export default class Artist extends React.Component {
+export default class ArtistDetails extends React.Component {
   constructor(props) {
     super(props);
 

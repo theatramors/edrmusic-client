@@ -1,10 +1,10 @@
 import React from "react";
-import {instance} from "../../services/instance.js";
-import {serverUrl} from "../../constants/constants.js";
 import {Link} from "react-router-dom";
 import {Card, CardBody, CardImg, CardText, CardTitle, Col, Row} from "reactstrap";
+import {serverUrl} from "../../constants/constants.js";
+import {instance} from "../../services/instance.js";
 
-export default class ArtistsList extends React.Component {
+class ArtistsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,3 +50,5 @@ export default class ArtistsList extends React.Component {
     );
   }
 }
+
+export default ArtistsList;

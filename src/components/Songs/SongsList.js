@@ -3,7 +3,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Col, Row} from "reactstrap";
 
-export default class AlbumsList extends React.Component {
+class SongsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,14 +12,15 @@ export default class AlbumsList extends React.Component {
   }
 
   componentDidMount() {
-    document.title = "Tracks";
+    document.title = "Songs";
 
     axios.get("http://localhost:8080/songs").then(answer => {
       this.setState({
         songs: answer.data
       });
-    }).catch(error =>
-      console.log(error)
+    }).catch(error => {
+        // TODO: Add error handling
+      }
     );
   }
 
@@ -52,3 +53,5 @@ export default class AlbumsList extends React.Component {
     );
   }
 }
+
+export default SongsList;

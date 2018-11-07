@@ -1,20 +1,15 @@
-import axios from "axios/index";
+import axios from "axios";
 import classnames from "classnames";
 import React from "react";
-import {Route, Switch} from "react-router-dom";
-import {Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
+import Col from "reactstrap/src/Col";
+import Nav from "reactstrap/src/Nav";
+import NavItem from "reactstrap/src/NavItem";
+import NavLink from "reactstrap/src/NavLink";
+import Row from "reactstrap/src/Row";
+import TabContent from "reactstrap/src/TabContent";
+import TabPane from "reactstrap/src/TabPane";
 
-export default class Profile extends React.Component {
-  render() {
-    return (
-      <Switch>
-        <Route path={"/users/:username"} component={UserProfile}/>
-      </Switch>
-    );
-  }
-}
-
-class UserProfile extends React.Component {
+class ProfileDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,7 +59,6 @@ class UserProfile extends React.Component {
             </Row>
           </Col>
         </Row>
-
         <Nav tabs className={"mb-4"}>
           <NavItem>
             <NavLink className={classnames({active: this.state.activeTab === "1"})} onClick={() => this.toggle("1")}>
@@ -87,7 +81,6 @@ class UserProfile extends React.Component {
             </NavLink>
           </NavItem>
         </Nav>
-
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId={"1"}>
             <Row>
@@ -122,3 +115,5 @@ class UserProfile extends React.Component {
     );
   }
 }
+
+export default ProfileDetails;

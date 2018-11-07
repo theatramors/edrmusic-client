@@ -3,7 +3,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Card, CardBody, CardImg, CardText, CardTitle, Col, Row} from "reactstrap";
 
-export default class AlbumsList extends React.Component {
+class AlbumsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,3 +46,5 @@ export default class AlbumsList extends React.Component {
     );
   }
 }
+
+export default AlbumsList;

@@ -3,7 +3,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {Col, Row} from "reactstrap";
 
-export default class Album extends React.Component {
+class AlbumDetails extends React.Component {
   constructor(props) {
     super(props);
 
@@ -96,3 +96,5 @@ export default class Album extends React.Component {
     );
   }
 }
+
+export default AlbumDetails;
