@@ -1,7 +1,7 @@
 import axios from "axios/index";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Col, Row } from "reactstrap";
+import {Link} from "react-router-dom";
+import {Col, Row} from "reactstrap";
 
 export default class AlbumsList extends React.Component {
   constructor(props) {
@@ -25,29 +25,29 @@ export default class AlbumsList extends React.Component {
 
   render() {
     return (
-      <div className={ "p-4 border rounded bg-light shadow" }>
+      <div className={"p-4 border rounded bg-light shadow"}>
         <Row>
-          <Col xs={ "auto" }>
-            <h4 className={ "mb-4" }>Popular tracks</h4>
+          <Col xs={"auto"}>
+            <h4 className={"mb-4"}>Popular tracks</h4>
           </Col>
         </Row>
-        { this.state.songs &&
-          this.state.songs.map((value, index) => (
-          <Row className={ "p-1 lead song" } key={ value.id }>
-            <Col xs={ "auto" } style={ { width: "35px" } }>
-              { index + 1 }
+        {this.state.songs &&
+        this.state.songs.map((value, index) => (
+          <Row className={"p-1 lead song"} key={value.id}>
+            <Col xs={"auto"} style={{width: "35px"}}>
+              {index + 1}
             </Col>
-            <Col xs={ "5" }>
-              <Link to={ "/tracks/" + value.id } className={ "text-dark" }>{ value.name }</Link>
+            <Col xs={"5"}>
+              <Link to={"/tracks/" + value.id} className={"text-dark"}>{value.name}</Link>
             </Col>
             <Col>
-              <Link to={ "/artists/" + value.artist.id } className={ "text-dark" }>{ value.artist.name }</Link>
+              <Link to={"/artists/" + value.artist.id} className={"text-dark"}>{value.artist.name}</Link>
             </Col>
-            <Col xs={ "1" } className={ "text-right" }>
-              { "3:59" }
+            <Col xs={"1"} className={"text-right"}>
+              {"3:59"}
             </Col>
           </Row>
-        )) }
+        ))}
       </div>
     );
   }
