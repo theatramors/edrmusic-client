@@ -1,13 +1,7 @@
 import axios from "axios";
 import classnames from "classnames";
 import React from "react";
-import Col from "reactstrap/src/Col";
-import Nav from "reactstrap/src/Nav";
-import NavItem from "reactstrap/src/NavItem";
-import NavLink from "reactstrap/src/NavLink";
-import Row from "reactstrap/src/Row";
-import TabContent from "reactstrap/src/TabContent";
-import TabPane from "reactstrap/src/TabPane";
+import {Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
 
 class ProfileDetails extends React.Component {
   constructor(props) {

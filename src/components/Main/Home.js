@@ -1,7 +1,5 @@
 import React from "react";
-import Col from "reactstrap/src/Col";
-import Jumbotron from "reactstrap/src/Jumbotron";
-import Row from "reactstrap/src/Row";
+import {Col, Jumbotron, Row} from "reactstrap";
 
 class Home extends React.Component {
   componentDidMount() {
