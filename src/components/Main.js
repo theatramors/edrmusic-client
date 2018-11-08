@@ -9,13 +9,14 @@ import Songs from "./Songs";
 
 class Main extends Component {
   render() {
+    console.log("Main props", this.props);
     return (
       <Switch>
-        <Route exact path={"/"} component={Home}/>
-        <Route exact path={"/tracks"} component={Songs}/>
-        <Route exact path={"/artists"} component={Artists}/>
-        <Route exact path={"/albums"} component={Albums}/>
-        <Route exact path={"/users"} component={Profile}/>
+        <Route exact path={"/"} render={(props) => <Home {...props} {...this.props}/>}/>
+        <Route exact path={"/tracks"} render={(props) => <Songs {...props} {...this.props}/>}/>
+        <Route path={"/artists"} render={(props) => <Artists {...props} {...this.props}/>}/>
+        <Route path={"/albums"} render={(props) => <Albums {...props} {...this.props}/>}/>
+        <Route path={"/users"} component={Profile}/>
         <Route component={PageNotFound}/>
       </Switch>
     );

@@ -1,14 +1,12 @@
-import axios from "axios/index";
 import classnames from "classnames";
 import React from "react";
 import {Link} from "react-router-dom";
 import {Card, CardBody, CardImg, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
+import {ArtistsService} from "../../services";
 
 export default class ArtistDetails extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
 
     this.state = {
       activeTab: "1",
@@ -26,19 +24,21 @@ export default class ArtistDetails extends React.Component {
         id: null,
         name: null
       }]
-    }
+    };
+
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/artists/" + this.props.match.params.id).then(answer => {
+    ArtistsService.getArtistById(this.props.match.params.id).then((answer) => {
       this.setState({
         artist: answer.data,
         songs: answer.data.songs,
         albums: answer.data.albums
       });
-    }).catch(error =>
-      console.log(error)
-    );
+    }).catch((error) => {
+      // TODO: Add error handling
+    });
   }
 
   toggle(tab) {
@@ -50,8 +50,8 @@ export default class ArtistDetails extends React.Component {
   }
 
   render() {
+    console.log("ArtistDetails props", this.props);
     document.title = "" + this.state.artist.name;
-
     return (
       <Row>
         <Col>
@@ -141,7 +141,10 @@ const ArtistInfo = (props) => {
   return (
     <Row className={"mb-4"}>
       <Col xs={"3"}>
-        <img src={"http://localhost:8080/artists/" + artist.id + "/logo"} width={"100%"} alt={"Logo"} className={"rounded shadow"}/>
+        {
+          artist.id &&
+          <img src={"http://localhost:8080/artists/" + artist.id + "/logo"} width={"100%"} alt={"Logo"} className={"rounded shadow"}/>
+        }
       </Col>
       <Col>
         <Row>

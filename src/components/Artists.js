@@ -5,9 +5,10 @@ import ArtistsList from "./Artists/ArtistsList";
 
 class Artists extends Component {
   render() {
+    console.log("Artists props", this.props);
     return (
       <Switch>
-        <Route exact path={"/artists"} component={ArtistsList}/>
+        <Route exact path={"/artists"} render={(props) => <ArtistsList {...props} {...this.props}/>}/>
         <Route exact path={"/artists/:id"} component={ArtistDetails}/>
       </Switch>
     );

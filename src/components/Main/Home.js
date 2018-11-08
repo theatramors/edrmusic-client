@@ -3,7 +3,7 @@ import {Col, Jumbotron, Row} from "reactstrap";
 
 class Home extends React.Component {
   componentDidMount() {
-    document.title = "Home";
+    this.props.actions.Home.componentDidMount();
   }
 
   render() {
