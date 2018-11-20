@@ -1,7 +1,7 @@
 import axios from "axios";
 import {serverUrl} from "../constants/constants.js";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: serverUrl,
   timeout: 30000,
   headers: {
@@ -9,6 +9,11 @@ const instance = axios.create({
   }
 });
 
-export {
-  instance
-};
+instance.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);

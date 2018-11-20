@@ -1,7 +1,11 @@
-import * as AlbumsService from "./AlbumsService";
-import * as ArtistsService from "./ArtistsService";
+import AlbumsService from "./AlbumsService";
+import ArtistsService from "./ArtistsService";
+import SongsService from "./SongsService";
+import UsersService from "./UsersService";
 
 export {
   ArtistsService,
-  AlbumsService
+  AlbumsService,
+  SongsService,
+  UsersService
 }
