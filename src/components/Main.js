@@ -1,26 +1,25 @@
 import React, {Component} from "react";
 import {Route, Switch} from "react-router-dom";
-import Albums from "./Albums";
-import Artists from "./Artists";
-import Home from "./Main/Home";
-import PageNotFound from "./PageNotFound";
-import Profile from "./Profile";
-import Songs from "./Songs";
+import {routes} from "../config/routes";
 
-class Main extends Component {
+export default class Main extends Component {
   render() {
-    console.log("Main props", this.props);
     return (
       <Switch>
-        <Route exact path={"/"} render={(props) => <Home {...props} {...this.props}/>}/>
-        <Route exact path={"/tracks"} render={(props) => <Songs {...props} {...this.props}/>}/>
-        <Route path={"/artists"} render={(props) => <Artists {...props} {...this.props}/>}/>
-        <Route path={"/albums"} render={(props) => <Albums {...props} {...this.props}/>}/>
-        <Route path={"/users"} component={Profile}/>
-        <Route component={PageNotFound}/>
+        {
+          routes.map((value, index) => {
+            const Component = value.component;
+            return (
+              <Route
+                key={index}
+                path={value.path}
+                exact={value.exact}
+                render={props => <Component {...props} {...this.props}/>}
+              />
+            );
+          })
+        }
       </Switch>
     );
   }
 }
-
-export default Main;

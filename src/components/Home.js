@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 import {Col, Jumbotron, Row} from "reactstrap";
 
-class Home extends React.Component {
+export default class Home extends Component {
   componentDidMount() {
     this.props.actions.Home.componentDidMount();
   }
@@ -23,5 +23,3 @@ class Home extends React.Component {
     );
   }
 }
-
-export default Home;

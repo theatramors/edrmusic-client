@@ -1,9 +1,9 @@
-import axios from "axios/index";
-import React from "react";
+import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {Col, Row} from "reactstrap";
+import {AlbumsService} from "../services";
 
-class AlbumDetails extends React.Component {
+export default class AlbumDetails extends Component {
   constructor(props) {
     super(props);
 
@@ -26,18 +26,18 @@ class AlbumDetails extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/albums/" + this.props.match.params.id).then(answer => {
+    document.title = "" + this.state.album.name;
+
+    AlbumsService.getAlbumById(this.props.match.params.id).then(answer => {
       this.setState({
         album: answer.data
       });
-    }).catch(error =>
-      console.log(error)
-    );
+    }).catch(error => {
+      // TODO: Add error handling
+    });
   }
 
   render() {
-    document.title = "" + this.state.album.name;
-
     return (
       <Row>
         <Col>
@@ -75,26 +75,26 @@ class AlbumDetails extends React.Component {
                 <h4 className={"mb-4"}>Tracks</h4>
               </Col>
             </Row>
-            {this.state.album.songs.map((value, index) => {
-              return (
-                <Row key={index} className={"lead p-1 song"}>
-                  <Col xs={"auto"} style={{width: "35px"}}>
-                    {index + 1}
-                  </Col>
-                  <Col>
-                    <Link to={"/"} className={"text-dark"}>{value.name}</Link>
-                  </Col>
-                  <Col xs={"1"} className={"ml-auto text-right"}>
-                    <span>{"3:59"}</span>
-                  </Col>
-                </Row>
-              )
-            })}
+            {
+              this.state.album.songs.map((value, index) => {
+                return (
+                  <Row key={index} className={"lead p-1 song"}>
+                    <Col xs={"auto"} style={{width: "35px"}}>
+                      {index + 1}
+                    </Col>
+                    <Col>
+                      <Link to={"/"} className={"text-dark"}>{value.name}</Link>
+                    </Col>
+                    <Col xs={"1"} className={"ml-auto text-right"}>
+                      <span>{"3:59"}</span>
+                    </Col>
+                  </Row>
+                );
+              })
+            }
           </div>
         </Col>
       </Row>
     );
   }
 }
-
-export default AlbumDetails;

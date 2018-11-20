@@ -1,11 +1,12 @@
-import axios from "axios";
 import classnames from "classnames";
-import React from "react";
+import React, {Component} from "react";
 import {Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
+import {UsersService} from "../services";
 
-class ProfileDetails extends React.Component {
+export default class UserDetails extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       activeTab: "1",
       user: {
@@ -18,10 +19,12 @@ class ProfileDetails extends React.Component {
   componentDidMount() {
     document.title = "Profile - " + this.props.match.params.username;
 
-    axios.get("http://localhost:8080/users/theatramors").then(answer => {
+    UsersService.getUserByUsername(this.props.match.params.username).then(answer => {
       this.setState({
         user: answer.data
       });
+    }).catch(error => {
+      // TODO: Add error handling
     });
   }
 
@@ -109,5 +112,3 @@ class ProfileDetails extends React.Component {
     );
   }
 }
-
-export default ProfileDetails;

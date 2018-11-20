@@ -1,8 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {Nav, Navbar, NavItem, NavLink} from "reactstrap";
 
-class Header extends React.Component {
+export default class Header extends Component {
   render() {
     return (
       <Navbar color={"light"} className={"mb-4 rounded-bottom shadow"} expand={"xs"}>
@@ -29,5 +29,3 @@ class Header extends React.Component {
     );
   }
 }
-
-export default Header;

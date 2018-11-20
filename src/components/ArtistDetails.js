@@ -1,10 +1,10 @@
 import classnames from "classnames";
-import React from "react";
+import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {Card, CardBody, CardImg, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
-import {ArtistsService} from "../../services";
+import {ArtistsService} from "../services/index";
 
-export default class ArtistDetails extends React.Component {
+export default class ArtistDetails extends Component {
   constructor(props) {
     super(props);
 
@@ -30,6 +30,8 @@ export default class ArtistDetails extends React.Component {
   }
 
   componentDidMount() {
+    document.title = "" + this.state.artist.name;
+
     ArtistsService.getArtistById(this.props.match.params.id).then((answer) => {
       this.setState({
         artist: answer.data,
@@ -50,14 +52,11 @@ export default class ArtistDetails extends React.Component {
   }
 
   render() {
-    console.log("ArtistDetails props", this.props);
-    document.title = "" + this.state.artist.name;
     return (
       <Row>
         <Col>
           <div className={"p-4 border rounded bg-light shadow"}>
             <ArtistInfo artist={this.state.artist}/>
-
             <Nav tabs className={"mb-4"}>
               <NavItem>
                 <NavLink className={classnames({active: this.state.activeTab === "1"})} onClick={() => this.toggle("1")}>
@@ -80,7 +79,6 @@ export default class ArtistDetails extends React.Component {
                 </NavLink>
               </NavItem>
             </Nav>
-
             <TabContent activeTab={this.state.activeTab}>
               <TabPane tabId={"1"}>
                 <Row>
