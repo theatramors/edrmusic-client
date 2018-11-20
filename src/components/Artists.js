@@ -32,6 +32,9 @@ export default class Artists extends Component {
         {
           this.state.artists ? (
             <Row>
+              <Col xs={"12"}>
+                <h4 className={"mb-4"}>Popular artists</h4>
+              </Col>
               {
                 this.state.artists.map((value, index, array) => (
                   <Col xs={"3"} className={array.length - index < 5 ? "mb-0" : "mb-4"} key={index}>
