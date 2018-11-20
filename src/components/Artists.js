@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import {Card, CardBody, CardImg, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 import {serverUrl} from "../constants/constants.js";
 import {ArtistsService} from "../services/index";
+import Loader from "./Loader/Loader";
 
 export default class Artists extends Component {
   constructor(props) {
@@ -27,26 +28,37 @@ export default class Artists extends Component {
 
   render() {
     return (
-      <Row>
+      <Container className={"p-4 border rounded bg-light shadow"}>
         {
-          this.state.artists &&
-          this.state.artists.map((value) => (
-            <Col xs={"3"} className={"mb-4"} key={value.id}>
-              <Card className={"shadow"}>
-                <Link to={"/artists/" + value.id}>
-                  <CardImg src={serverUrl + "/artists/" + value.id + "/logo"}/>
-                </Link>
-                <CardBody className={"text-center border-top bg-light"}>
-                  <CardTitle tag={"h6"} className={"mb-0 text-dark"}>
-                    <Link to={"/artists/" + value.id} className={"text-dark"} style={{overflow: "hidden", whiteSpace: "nowrap"}}>{value.name}</Link>
-                  </CardTitle>
-                  <CardText tag={"small"}><Link to={"/"} className={"text-dark"}>{value.genre}</Link></CardText>
-                </CardBody>
-              </Card>
-            </Col>
-          ))
+          this.state.artists ? (
+            <Row>
+              {
+                this.state.artists.map((value, index, array) => (
+                  <Col xs={"3"} className={array.length - index < 5 ? "mb-0" : "mb-4"} key={index}>
+                    <Card className={"shadow"}>
+                      <Link to={"/artists/" + value.id}>
+                        <CardImg src={serverUrl + "/artists/" + value.id + "/logo"}/>
+                      </Link>
+                      <CardBody className={"text-center border-top bg-light"}>
+                        <CardTitle tag={"h6"} className={"mb-0 text-dark"}>
+                          <Link to={"/artists/" + value.id} className={"text-dark"} style={{overflow: "hidden", whiteSpace: "nowrap"}}>{value.name}</Link>
+                        </CardTitle>
+                        <CardText tag={"small"}>
+                          <Link to={"/"} className={"text-dark"}>{value.genre}</Link>
+                        </CardText>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                ))
+              }
+            </Row>
+          ) : (
+            <Row className={"justify-content-center"}>
+              <Col xs={"auto"}><Loader/></Col>
+            </Row>
+          )
         }
-      </Row>
+      </Container>
     );
   }
 }
