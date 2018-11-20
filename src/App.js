@@ -7,12 +7,13 @@ import {Container} from "reactstrap";
 import * as actions from "./actions";
 import Header from "./components/Header";
 import {routes} from "./config/routes";
+import "./index.css";
 
 export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Container fluid className={"text-dark"} style={{width: "1000px", height: "100vh"}}>
+        <Container fluid className={"p-0 text-dark"} style={{width: "1000px", height: "100vh"}}>
           <Header/>
           <Switch>
             {
