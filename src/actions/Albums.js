@@ -1,5 +1,4 @@
 function componentDidMount() {
-  console.log("AlbumsList did mount");
   document.title = "Albums";
 }
 
