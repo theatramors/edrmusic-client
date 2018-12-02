@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Jumbotron} from "reactstrap";
 
-export default class PageNotFound extends Component {
+export default class PageNotFoundComponent extends Component {
   render() {
     return (
       <Jumbotron className={"text-center border bg-light shadow"}>

@@ -15,7 +15,7 @@ export default class Artists extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.ArtistsList.componentDidMount();
+    this.props.actions.Artists.componentDidMount();
 
     ArtistsService.getArtists().then((answer) => {
       this.setState({

@@ -14,7 +14,7 @@ export default class Albums extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.AlbumsList.componentDidMount();
+    this.props.actions.Albums.componentDidMount();
 
     AlbumsService.getAlbums().then(answer => {
       this.setState({
