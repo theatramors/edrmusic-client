@@ -4,7 +4,7 @@ const initialState = {
   list: []
 };
 
-const Songs = (state = initialState, action) => {
+const songs = (state = initialState, action) => {
   switch (action.type) {
     case ACTIONS.SONGS.LIST_LOADED:
       return {
@@ -16,4 +16,4 @@ const Songs = (state = initialState, action) => {
   }
 };
 
-export default Songs;
+export default songs;

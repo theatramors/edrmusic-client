@@ -12,6 +12,9 @@ const componentDidMount = () => {
       })
       .catch(reason => {
         console.error(reason);
+        dispatch({
+          type: ACTIONS.TICKETS.LOAD_FAILED
+        });
       })
   }
 };

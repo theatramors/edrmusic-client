@@ -14,6 +14,11 @@ const ticket = (state = initialState, action) => {
         ...state,
         list: action.payload
       };
+    case ACTIONS.TICKETS.LOAD_FAILED:
+      return {
+        ...state,
+        list: []
+      };
     case ACTIONS.TICKETS.MODAL.OPENED:
       return {
         ...state,

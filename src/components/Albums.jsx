@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row } from "reactstrap";
 import { bindActionCreators } from "redux";
-import * as actions from "../store/actions";
+import * as actions from "../actions";
 import Loader from "./Loader/Loader";
 
 class Albums extends Component {
@@ -64,7 +64,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     actions: {
-      albums: bindActionCreators(actions.albumsActions, dispatch)
+      albums: bindActionCreators(actions.albums, dispatch)
     }
   }
 };

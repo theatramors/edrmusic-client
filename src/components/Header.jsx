@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavItem, NavLink, UncontrolledDropdown } from "reactstrap";
 import { bindActionCreators } from "redux";
-import * as actions from "../store/actions";
+import * as actions from "../actions";
 
 class Header extends Component {
   render() {
@@ -15,15 +15,18 @@ class Header extends Component {
           <NavItem className={"mr-4"}>
             <NavLink tag={"span"}>
               <Link to={"/"} className={"text-dark"}>EDR</Link>
-              .
-              <Link to={"/music"} className={"text-dark"}>Music</Link>
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={"span"}>
-              <Link to={"/tickets"} className={"text-dark"}>Tickets</Link>
+              <Link to={"/bots"} className={"text-dark"}>Bots</Link>
             </NavLink>
           </NavItem>
+          {/*<NavItem>*/}
+          {/*  <NavLink tag={"span"}>*/}
+          {/*    <Link to={"/tickets"} className={"text-dark"}>Tickets</Link>*/}
+          {/*  </NavLink>*/}
+          {/*</NavItem>*/}
         </Nav>
         <Nav navbar className={"ml-auto align-items-center"}>
           {
@@ -69,7 +72,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     actions: {
-      authentication: bindActionCreators(actions.authenticationActions, dispatch)
+      authentication: bindActionCreators(actions.authentication, dispatch)
     }
   }
 };

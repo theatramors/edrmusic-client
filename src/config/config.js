@@ -2,6 +2,7 @@ import AlbumDetails from "../components/AlbumDetails";
 import Albums from "../components/Albums";
 import ArtistDetails from "../components/ArtistDetails";
 import Artists from "../components/Artists";
+import Bots from "../components/Bots";
 import Home from "../components/Home";
 import LoginForm from "../components/LoginForm";
 import PageNotFound from "../components/PageNotFound";
@@ -28,6 +29,12 @@ const config = {
       path: '/tickets',
       exact: true,
       component: Tickets
+    },
+    {
+      inLayout: true,
+      path: '/bots',
+      exact: true,
+      component: Bots
     },
     {
       inLayout: true,

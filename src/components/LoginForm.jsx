@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Button, Form, Input, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { bindActionCreators } from "redux";
-import * as actions from "../store/actions";
+import * as actions from "../actions";
 
 class LoginForm extends Component {
   state = {
@@ -41,7 +41,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     actions: {
-      authentication: bindActionCreators(actions.authenticationActions, dispatch)
+      authentication: bindActionCreators(actions.authentication, dispatch)
     }
   }
 };

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { bindActionCreators } from "redux";
-import * as actions from "../store/actions";
+import * as actions from "../actions";
 
 class Songs extends Component {
   componentDidMount() {
@@ -60,7 +60,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     actions: {
-      songs: bindActionCreators(actions.songsActions, dispatch)
+      songs: bindActionCreators(actions.songs, dispatch)
     }
   }
 };

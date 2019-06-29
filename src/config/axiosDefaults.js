@@ -11,6 +11,7 @@ axios.interceptors.response.use(
   error => { // error = { response: { data, status, headers } request, message, config }
     switch (error.response.status) {
       case 403:
+        console.log('403 code');
         localStorage.clear();
         history.push("/login");
         break;

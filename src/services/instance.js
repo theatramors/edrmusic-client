@@ -1,8 +1,7 @@
 import axios from "axios";
-import { serverUrl } from "../constants/constants.js";
 
 export const instance = axios.create({
-  baseURL: serverUrl,
+  baseURL: 'http://edr.local:8080',
   timeout: 30000,
   headers: {
     "content-type": "application/json;charset=UTF-8"

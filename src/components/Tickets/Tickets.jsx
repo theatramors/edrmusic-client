@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Button, Col, Container, Row } from 'reactstrap';
 import { bindActionCreators } from "redux";
+import * as actions from "../../actions";
 import TableWrapper from "../../containers/TableWrapper.jsx";
-import * as actions from "../../store/actions";
 import Loader from "../Loader/Loader";
 import AddTicketModal from "./CreateTicketModal";
 
