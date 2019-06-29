@@ -1,7 +1,6 @@
-import { createBrowserHistory } from "history";
 import { applyMiddleware, compose, createStore } from "redux";
 import thunk from 'redux-thunk';
-import reducer from './reducer';
+import reducer from '../store/reducer';
 
 const store = createStore(
   reducer,
@@ -11,9 +10,4 @@ const store = createStore(
   )
 );
 
-const history = createBrowserHistory();
-
-export {
-  store,
-  history
-};
+export default store;

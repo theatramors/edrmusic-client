@@ -5,9 +5,9 @@ import { ToastContainer } from "react-toastify";
 import { Container } from "reactstrap";
 import { bindActionCreators } from "redux";
 import Header from "./components/Header";
-import { config } from "./config/config";
+import { config } from "./config";
+import { history } from "./redux";
 import * as actions from "./store/actions";
-import { history } from "./store/store";
 
 class App extends Component {
   render() {

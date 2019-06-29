@@ -1,7 +1,7 @@
 import axios from "axios";
-import { history } from "../store/store";
+import { history } from "../redux";
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = 'http://edr.local:8080';
 axios.defaults.headers.common['Authentication'] = localStorage.getItem('token');
 
 axios.interceptors.response.use(

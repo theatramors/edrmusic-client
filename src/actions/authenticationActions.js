@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ACTIONS } from "../constants/actions";
-import { history } from "../store/store";
+import { history } from "../redux";
 
 const login = data => {
   return dispatch => {
