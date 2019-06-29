@@ -1,57 +1,67 @@
-import "bootstrap/dist/css/bootstrap.css";
-import React, {Component} from "react";
-import {connect} from 'react-redux';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import {Container} from "reactstrap";
-import * as Albums from "./actions/AlbumsActions"
-import * as Artists from "./actions/ArtistsActions"
-import * as Home from "./actions/HomeActions"
-import * as Songs from "./actions/SongsActions"
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { Route, Router, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { Container } from "reactstrap";
+import { bindActionCreators } from "redux";
 import Header from "./components/Header";
-import {routes} from "./config/routes";
-import "./index.css";
-
-const actions = {
-  Songs,
-  Home,
-  Artists,
-  Albums
-};
+import { config } from "./config/config";
+import * as actions from "./store/actions";
+import { history } from "./store/store";
 
 class App extends Component {
   render() {
+    const { routes } = this.props.store.application.config;
+
     return (
-      <BrowserRouter>
-        <Container fluid className={"p-0 text-dark"} style={{width: "1000px", height: "100vh"}}>
-          <Header/>
-          <Switch>
-            {
-              routes.map((value, index) => {
-                const Component = value.component;
-                return (
-                  <Route
-                    key={index}
-                    path={value.path}
-                    exact={value.exact}
-                    render={props => <Component {...props} {...this.props} actions={actions}/>}
-                  />
-                );
-              })
-            }
-          </Switch>
-          <ToastContainer/>
-        </Container>
-      </BrowserRouter>
+      <Router history={history}>
+        <Switch>
+          {
+            routes.map((value, index) => {
+              const Component = value.component;
+              return (
+                <Route
+                  key={index}
+                  path={value.path}
+                  exact={value.exact}
+                  render={props =>
+                    <Container fluid className={"p-0 text-dark"} style={{ width: "1000px", height: "100vh" }}>
+                      <Header {...props}/>
+                      <Component {...props}/>
+                      <ToastContainer/>
+                    </Container>
+                  }
+                />
+              );
+            })
+          }
+        </Switch>
+      </Router>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    store: state
+    store: {
+      ...state,
+      application: {
+        config
+      }
+    }
   }
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: {
+      albums: bindActionCreators(actions.albumsActions, dispatch),
+      artists: bindActionCreators(actions.artistsActions, dispatch),
+      home: bindActionCreators(actions.homeActions, dispatch),
+      songs: bindActionCreators(actions.songsActions, dispatch),
+    }
+  }
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

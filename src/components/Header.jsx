@@ -1,9 +1,14 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {Button, Nav, Navbar, NavItem, NavLink} from "reactstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Button, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavItem, NavLink, UncontrolledDropdown } from "reactstrap";
+import { bindActionCreators } from "redux";
+import * as actions from "../store/actions";
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
+    const { actions, store, history } = this.props;
+
     return (
       <Navbar color={"light"} className={"mb-4 rounded-bottom shadow"} expand={"xs"}>
         <Nav navbar>
@@ -16,35 +21,57 @@ export default class Header extends Component {
           </NavItem>
           <NavItem>
             <NavLink tag={"span"}>
-              <Link to={"/tracks"} className={"text-dark"}>Tracks</Link>
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={"span"}>
-              <Link to={"/artists"} className={"text-dark"}>Artists</Link>
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={"span"}>
-              <Link to={"/albums"} className={"text-dark"}>Albums</Link>
+              <Link to={"/tickets"} className={"text-dark"}>Tickets</Link>
             </NavLink>
           </NavItem>
         </Nav>
         <Nav navbar className={"ml-auto align-items-center"}>
-          <NavItem>
-            <NavLink tag={"span"}>
-              <Link to={"/users/theatramors"} className={"text-dark"}>My music</Link>
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={"span"}>
-              <Link to={"/users/theatramors"} className={"text-dark"}>
-                <Button size={"sm"} color={"danger"}>Login</Button>
-              </Link>
-            </NavLink>
-          </NavItem>
+          {
+            store.authentication.user ? (
+              <UncontrolledDropdown>
+                <DropdownToggle nav caret className={"text-dark"}>
+                  {store.authentication.user.username}
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem onClick={() => history.push("/users/" + store.authentication.user.username)}>
+                    Profile
+                  </DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem onClick={actions.authentication.logout}>
+                    Logout
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            ) : (
+              <NavItem>
+                <NavLink tag={"span"}>
+                  <Link to={"/login"} className={"text-dark"}>
+                    <Button size={"sm"} color={"primary"}>Login</Button>
+                  </Link>
+                </NavLink>
+              </NavItem>
+            )
+          }
         </Nav>
       </Navbar>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    store: {
+      authentication: state.authentication
+    }
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: {
+      authentication: bindActionCreators(actions.authenticationActions, dispatch)
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

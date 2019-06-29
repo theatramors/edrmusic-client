@@ -1,13 +1,18 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {Col, Container, Row} from "reactstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
+import { bindActionCreators } from "redux";
+import * as actions from "../store/actions";
 
 class Songs extends Component {
   componentDidMount() {
-    this.props.actions.Songs.SongsDidMount();
+    this.props.actions.songs.componentDidMount();
   }
 
   render() {
+    const { list } = this.props.store.songs;
+
     return (
       <Container className={"p-4 border rounded bg-light shadow"}>
         {
@@ -19,9 +24,9 @@ class Songs extends Component {
                 </Col>
               </Row>
               {
-                this.props.store.songs.map((value, index) =>
+                list.map((value, index) =>
                   <Row className={"p-1 lead song"} key={value.id}>
-                    <Col xs={"auto"} style={{width: "35px"}}>
+                    <Col xs={"auto"} style={{ width: "35px" }}>
                       {index + 1}
                     </Col>
                     <Col xs={"5"}>
@@ -44,4 +49,20 @@ class Songs extends Component {
   }
 }
 
-export default Songs;
+const mapStateToProps = state => {
+  return {
+    store: {
+      ...state
+    }
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: {
+      songs: bindActionCreators(actions.songsActions, dispatch)
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Songs);

@@ -1,18 +1,18 @@
 .loader-ring {
-    display: block;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 5px solid gray;
-    border-top-color: gainsboro;
-    animation: loader-ring 1s linear infinite;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 5px solid #007bff;
+  border-top-color: transparent;
+  animation: loader-ring 750ms linear infinite;
 }
 
 @keyframes loader-ring {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

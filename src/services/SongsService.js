@@ -1,7 +1,7 @@
-import {instance} from "./instance";
+import { instance } from "./instance";
 
 export default class SongsService {
-  static getSongs() {
+  static async getSongs() {
     return instance.request({
       url: "/songs",
       method: "GET"

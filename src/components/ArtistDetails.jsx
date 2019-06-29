@@ -1,8 +1,8 @@
 import classnames from "classnames";
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {Card, CardBody, CardImg, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
-import {ArtistsService} from "../services/index";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Card, CardBody, CardImg, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
+import { ArtistsService } from "../services/index";
 
 export default class ArtistDetails extends Component {
   constructor(props) {
@@ -59,22 +59,22 @@ export default class ArtistDetails extends Component {
             <ArtistInfo artist={this.state.artist}/>
             <Nav tabs className={"mb-4"}>
               <NavItem>
-                <NavLink className={classnames({active: this.state.activeTab === "1"})} onClick={() => this.toggle("1")}>
+                <NavLink className={classnames({ active: this.state.activeTab === "1" })} onClick={() => this.toggle("1")}>
                   <span className={"small text-muted"}>OVERVIEW</span>
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className={classnames({active: this.state.activeTab === "2"})} onClick={() => this.toggle("2")}>
+                <NavLink className={classnames({ active: this.state.activeTab === "2" })} onClick={() => this.toggle("2")}>
                   <span className={"small text-muted"}>TRACKS</span>
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className={classnames({active: this.state.activeTab === "3"})} onClick={() => this.toggle("3")}>
+                <NavLink className={classnames({ active: this.state.activeTab === "3" })} onClick={() => this.toggle("3")}>
                   <span className={"small text-muted"}>ALBUMS</span>
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className={classnames({active: this.state.activeTab === "4"})} onClick={() => this.toggle("4")}>
+                <NavLink className={classnames({ active: this.state.activeTab === "4" })} onClick={() => this.toggle("4")}>
                   <span className={"small text-muted"}>INFO</span>
                 </NavLink>
               </NavItem>
@@ -173,7 +173,7 @@ const ArtistSongs = (props) => {
     songs.map((value, index) => {
       return (
         <Row key={index} className={"lead p-1 song"}>
-          <Col xs={"auto"} style={{width: "35px"}}>
+          <Col xs={"auto"} style={{ width: "35px" }}>
             {index + 1}
           </Col>
           <Col>

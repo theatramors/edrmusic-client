@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {Col, Row} from "reactstrap";
-import {AlbumsService} from "../services";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Col, Row } from "reactstrap";
+import { AlbumsService } from "../services";
 
 export default class AlbumDetails extends Component {
   constructor(props) {
@@ -79,7 +79,7 @@ export default class AlbumDetails extends Component {
               this.state.album.songs.map((value, index) => {
                 return (
                   <Row key={index} className={"lead p-1 song"}>
-                    <Col xs={"auto"} style={{width: "35px"}}>
+                    <Col xs={"auto"} style={{ width: "35px" }}>
                       {index + 1}
                     </Col>
                     <Col>

@@ -1,7 +1,7 @@
 import classnames from "classnames";
-import React, {Component} from "react";
-import {Col, Nav, NavItem, NavLink, Row, TabContent, TabPane} from "reactstrap";
-import {UsersService} from "../services";
+import React, { Component } from "react";
+import { Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
+import { UsersService } from "../services";
 
 export default class UserDetails extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ export default class UserDetails extends Component {
           <Col>
             <Row>
               <Col>
-                <span className={"lead text-muted"}>{"MY MUSIC"}</span>
+                <span className={"text-muted"}>{"PROFILE"}</span>
               </Col>
             </Row>
             <Row>
@@ -58,23 +58,23 @@ export default class UserDetails extends Component {
         </Row>
         <Nav tabs className={"mb-4"}>
           <NavItem>
-            <NavLink className={classnames({active: this.state.activeTab === "1"})} onClick={() => this.toggle("1")}>
-              <span className={"small text-muted"}>TRACKS</span>
+            <NavLink className={classnames({ active: this.state.activeTab === "1" })} onClick={() => this.toggle("1")}>
+              <span className={"text-muted"}>TRACKS</span>
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({active: this.state.activeTab === "2"})} onClick={() => this.toggle("2")}>
-              <span className={"small text-muted"}>ALBUMS</span>
+            <NavLink className={classnames({ active: this.state.activeTab === "2" })} onClick={() => this.toggle("2")}>
+              <span className={"text-muted"}>ALBUMS</span>
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({active: this.state.activeTab === "3"})} onClick={() => this.toggle("3")}>
-              <span className={"small text-muted"}>ARTISTS</span>
+            <NavLink className={classnames({ active: this.state.activeTab === "3" })} onClick={() => this.toggle("3")}>
+              <span className={"text-muted"}>ARTISTS</span>
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({active: this.state.activeTab === "4"})} onClick={() => this.toggle("4")}>
-              <span className={"small text-muted"}>PLAYLISTS</span>
+            <NavLink className={classnames({ active: this.state.activeTab === "4" })} onClick={() => this.toggle("4")}>
+              <span className={"text-muted"}>PLAYLISTS</span>
             </NavLink>
           </NavItem>
         </Nav>

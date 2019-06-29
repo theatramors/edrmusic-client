@@ -1,28 +1,18 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row} from "reactstrap";
-import {AlbumsService} from "../services/index";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import { bindActionCreators } from "redux";
+import * as actions from "../store/actions";
 import Loader from "./Loader/Loader";
 
-export default class Albums extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      albums: null
-    }
-  }
+class Albums extends Component {
+  state = {
+    albums: null
+  };
 
   componentDidMount() {
-    this.props.actions.Albums.componentDidMount();
-
-    AlbumsService.getAlbums().then(answer => {
-      this.setState({
-        albums: answer.data
-      });
-    }).catch(error => {
-      // TODO: Add error handling
-    });
+    this.props.actions.albums.componentDidMount();
   }
 
   render() {
@@ -62,3 +52,21 @@ export default class Albums extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    store: {
+      ...state
+    }
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: {
+      albums: bindActionCreators(actions.albumsActions, dispatch)
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Albums);

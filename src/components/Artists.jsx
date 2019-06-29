@@ -1,42 +1,30 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row} from "reactstrap";
-import {serverUrl} from "../constants/constants.js";
-import {ArtistsService} from "../services/index";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import { bindActionCreators } from "redux";
+import { serverUrl } from "../constants/constants.js";
+import * as actions from "../store/actions";
 import Loader from "./Loader/Loader";
 
-export default class Artists extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      artists: null
-    }
-  }
-
+class Artists extends Component {
   componentDidMount() {
-    this.props.actions.Artists.componentDidMount();
-
-    ArtistsService.getArtists().then((answer) => {
-      this.setState({
-        artists: answer.data
-      });
-    }).catch(() => {
-      // TODO: Add error handling
-    });
+    this.props.actions.artists.componentDidMount();
   }
 
   render() {
+    const { list } = this.props.store.artists;
+
     return (
       <Container className={"p-4 border rounded bg-light shadow"}>
         {
-          this.state.artists ? (
+          list ? (
             <Row>
               <Col xs={"12"}>
                 <h4 className={"mb-4"}>Popular artists</h4>
               </Col>
               {
-                this.state.artists.map((value, index, array) => (
+                list.map((value, index, array) => (
                   <Col xs={"3"} className={array.length - index < 5 ? "mb-0" : "mb-4"} key={index}>
                     <Card className={"shadow"}>
                       <Link to={"/artists/" + value.id}>
@@ -44,7 +32,7 @@ export default class Artists extends Component {
                       </Link>
                       <CardBody className={"text-center border-top bg-light"}>
                         <CardTitle tag={"h6"} className={"mb-0 text-dark"}>
-                          <Link to={"/artists/" + value.id} className={"text-dark"} style={{overflow: "hidden", whiteSpace: "nowrap"}}>{value.name}</Link>
+                          <Link to={"/artists/" + value.id} className={"text-dark"} style={{ overflow: "hidden", whiteSpace: "nowrap" }}>{value.name}</Link>
                         </CardTitle>
                         <CardText tag={"small"}>
                           <Link to={"/"} className={"text-dark"}>{value.genre}</Link>
@@ -65,3 +53,21 @@ export default class Artists extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    store: {
+      ...state
+    }
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: {
+      artists: bindActionCreators(actions.artistsActions, dispatch)
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Artists);

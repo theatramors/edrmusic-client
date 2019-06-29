@@ -1,7 +1,11 @@
-import React, {Component} from "react";
-import {Jumbotron} from "reactstrap";
+import React, { Component } from "react";
+import { Jumbotron } from "reactstrap";
 
 export default class PageNotFoundComponent extends Component {
+  componentDidMount() {
+    document.title = "EDR.Music";
+  }
+
   render() {
     return (
       <Jumbotron className={"text-center border bg-light shadow"}>

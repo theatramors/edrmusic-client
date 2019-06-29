@@ -1,9 +1,12 @@
-import React, {Component} from "react";
-import {Col, Jumbotron, Row} from "reactstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Col, Jumbotron, Row } from "reactstrap";
+import { bindActionCreators } from "redux";
+import * as actions from "../store/actions";
 
-export default class Home extends Component {
+class Home extends Component {
   componentDidMount() {
-    this.props.actions.Home.componentDidMount();
+    this.props.actions.home.componentDidMount();
   }
 
   render() {
@@ -23,3 +26,21 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    store: {
+      ...state
+    }
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: {
+      home: bindActionCreators(actions.homeActions, dispatch)
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
