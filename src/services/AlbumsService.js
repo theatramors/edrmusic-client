@@ -1,12 +1,17 @@
-import {instance} from "./instance";
+import { instance } from "./instance";
 
-function getAlbums() {
-  return instance.request({
-    url: "/albums",
-    method: "GET"
-  });
-}
+export default class AlbumsService {
+  static getAlbums() {
+    return instance.request({
+      url: "/albums",
+      method: "GET"
+    });
+  }
 
-export {
-  getAlbums
+  static getAlbumById(id) {
+    return instance.request({
+      url: "/albums/" + id,
+      method: "GET"
+    });
+  }
 }

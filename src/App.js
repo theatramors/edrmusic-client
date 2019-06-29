@@ -1,19 +1,67 @@
-import React, {Component} from "react";
-import {Container} from "reactstrap";
-import * as actions from "./actions";
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { Route, Router, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { Container } from "reactstrap";
+import { bindActionCreators } from "redux";
 import Header from "./components/Header";
-import Main from "./components/Main";
+import { config } from "./config/config";
+import * as actions from "./store/actions";
+import { history } from "./store/store";
 
 class App extends Component {
   render() {
-    console.log("App props", this.props);
+    const { routes } = this.props.store.application.config;
+
     return (
-      <Container fluid className={"text-dark"} style={{width: "1000px", height: "100vh"}}>
-        <Header/>
-        <Main actions={actions.default}/>
-      </Container>
+      <Router history={history}>
+        <Switch>
+          {
+            routes.map((value, index) => {
+              const Component = value.component;
+              return (
+                <Route
+                  key={index}
+                  path={value.path}
+                  exact={value.exact}
+                  render={props =>
+                    <Container fluid className={"p-0 text-dark"} style={{ width: "1000px", height: "100vh" }}>
+                      <Header {...props}/>
+                      <Component {...props}/>
+                      <ToastContainer/>
+                    </Container>
+                  }
+                />
+              );
+            })
+          }
+        </Switch>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    store: {
+      ...state,
+      application: {
+        config
+      }
+    }
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: {
+      albums: bindActionCreators(actions.albumsActions, dispatch),
+      artists: bindActionCreators(actions.artistsActions, dispatch),
+      home: bindActionCreators(actions.homeActions, dispatch),
+      songs: bindActionCreators(actions.songsActions, dispatch),
+    }
+  }
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
