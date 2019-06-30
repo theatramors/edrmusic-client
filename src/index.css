@@ -7,9 +7,10 @@
 body {
   margin: 0;
   padding: 0;
-  /*font: 15px/1.5 "Consolas";*/
   font: 14px/1.5 "Segoe UI";
-  background: url("http://localhost:3000/img/fabric.png");
+
+  /*noinspection CssUnknownTarget*/
+  background: url("/img/fabric.png");
 }
 
 ul {

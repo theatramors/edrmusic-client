@@ -1,7 +1,6 @@
 import axios from "axios";
 import { history } from "../redux";
 
-axios.defaults.baseURL = 'http://edr.local:8080';
 axios.defaults.headers.common['Authentication'] = localStorage.getItem('token');
 
 axios.interceptors.response.use(
@@ -14,6 +13,9 @@ axios.interceptors.response.use(
         console.log('403 code');
         localStorage.clear();
         history.push("/login");
+        break;
+      case 502:
+        console.log('502 code');
         break;
       default:
         return Promise.reject(error);
