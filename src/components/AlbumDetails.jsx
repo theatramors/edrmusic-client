@@ -1,7 +1,7 @@
+import axios from 'axios';
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import { AlbumsService } from "../services";
 
 export default class AlbumDetails extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ export default class AlbumDetails extends Component {
   componentDidMount() {
     document.title = "" + this.state.album.name;
 
-    AlbumsService.getAlbumById(this.props.match.params.id).then(answer => {
+    axios.get('/albums/' + this.props.match.params.id).then(answer => {
       this.setState({
         album: answer.data
       });

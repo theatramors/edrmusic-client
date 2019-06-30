@@ -1,8 +1,8 @@
+import axios from 'axios';
 import classnames from "classnames";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardImg, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
-import { ArtistsService } from "../services/index";
 
 export default class ArtistDetails extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export default class ArtistDetails extends Component {
   componentDidMount() {
     document.title = "" + this.state.artist.name;
 
-    ArtistsService.getArtistById(this.props.match.params.id).then((answer) => {
+    axios.get('/artists/' + this.props.match.params.id).then((answer) => {
       this.setState({
         artist: answer.data,
         songs: answer.data.songs,

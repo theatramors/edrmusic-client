@@ -1,10 +1,10 @@
-import AlbumsService from "../services/AlbumsService";
+import axios from 'axios';
 
 const componentDidMount = () => {
   document.title = "Albums";
 
   return dispatch => {
-    AlbumsService.getAlbums().then(answer => {
+    axios.get('/albums').then(answer => {
 
     });
   };

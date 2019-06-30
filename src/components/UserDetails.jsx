@@ -1,7 +1,7 @@
+import axios from 'axios';
 import classnames from "classnames";
 import React, { Component } from "react";
 import { Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
-import { UsersService } from "../services";
 
 export default class UserDetails extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class UserDetails extends Component {
   componentDidMount() {
     document.title = "Profile - " + this.props.match.params.username;
 
-    UsersService.getUserByUsername(this.props.match.params.username).then(answer => {
+    axios.get('/users/' + this.props.match.params.username).then(answer => {
       this.setState({
         user: answer.data
       });

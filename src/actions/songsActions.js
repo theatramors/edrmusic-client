@@ -1,11 +1,11 @@
+import axios from 'axios';
 import { ACTIONS } from "../constants/actions";
-import SongsService from "../services/SongsService";
 
 const componentDidMount = () => {
   document.title = "Tracks";
 
   return dispatch => {
-    SongsService.getSongs()
+    axios.get('/songs')
       .then(value => dispatch(listLoaded(value.data)))
       .catch(() => dispatch(listLoaded([])));
   }

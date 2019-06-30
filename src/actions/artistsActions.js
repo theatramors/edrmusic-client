@@ -1,11 +1,11 @@
+import axios from 'axios';
 import { ACTIONS } from "../constants/actions";
-import ArtistsService from "../services/ArtistsService";
 
 const componentDidMount = () => {
   document.title = "Artists";
 
   return dispatch => {
-    ArtistsService.getArtists().then(answer => {
+    axios.get('/artists').then(answer => {
       dispatch(listLoaded(answer.data));
     }).catch(() => {
       dispatch(listLoaded([]));
