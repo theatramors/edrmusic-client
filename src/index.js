@@ -1,14 +1,17 @@
-import "bootstrap/dist/css/bootstrap.css";
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import { Provider } from "react-redux";
-import "react-toastify/dist/ReactToastify.css";
-import App from "./App";
-import "./config/axiosDefaults";
-import "./index.css";
-import { store } from "./redux";
-import registerServiceWorker from "./registerServiceWorker";
+import { store } from './redux';
+import App from './App';
 
-ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById("root"));
+import registerServiceWorker from './registerServiceWorker';
+import { initAxios } from './config';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
+
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
 registerServiceWorker();
+initAxios();
