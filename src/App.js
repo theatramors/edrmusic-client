@@ -46,10 +46,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     store: {
-      ...state,
-      application: {
-        config
-      }
+      application: state.application
     }
   }
 };

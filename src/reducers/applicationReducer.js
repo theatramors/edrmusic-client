@@ -1,4 +1,10 @@
-const application = (state = {}, action) => {
+import { config } from '../config';
+
+const initialState = {
+  config: config
+};
+
+const application = (state = initialState, action) => {
   return state;
 };
 
