@@ -6,7 +6,6 @@ import { Container } from "reactstrap";
 import { bindActionCreators } from "redux";
 import * as actions from "./actions";
 import Header from "./components/Header";
-import { config } from "./config";
 import { history } from "./redux";
 
 class App extends Component {
